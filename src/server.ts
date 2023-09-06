@@ -1,12 +1,13 @@
-import express, { Request, Response } from "express";
+import "dotenv/config";
+import "./database/runMigrations";
+
+import express from "express";
+import { router } from "./router";
 
 const app = express();
 const port = 3000;
 
 app.use(express.json());
-
-app.get("/", (request: Request, response: Response) => {
-  response.json({ message: "Hello world!" });
-});
+app.use(router);
 
 app.listen(port, () => console.log(`Server Running on port ${port}.`));
