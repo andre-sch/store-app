@@ -1,5 +1,6 @@
 import { Product } from "../../entities/Product";
 import { IProductsRepository } from "../../repositories/IProductsRepository";
+import { OperationalError } from "../../errors/OperationalError";
 
 export interface IProductRequest {
   name: string;
@@ -16,7 +17,7 @@ export class CreateProductService {
     const product = new Product(name, description, quantity, price);
 
     if (await this.productsRepository.findById(product.id))
-      throw new Error("Product ID is already taken!");
+      throw new OperationalError("Product ID is already taken!");
 
     await this.productsRepository.create(product);
   }
