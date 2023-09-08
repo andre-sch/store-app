@@ -1,15 +1,11 @@
 import { Router } from "express";
-import { createProductController } from "./features/CreateProduct";
-import { listProductsController } from "./features/ListProducts";
+
+import { listProducts } from "./features/ListProducts";
+import { createProduct } from "./features/CreateProduct";
 
 const router = Router();
 
-router.get("/products", (request, response) => {
-  listProductsController.handle(request, response);
-});
-
-router.post("/products", (request, response) => {
-  createProductController.handle(request, response);
-});
+router.get("/products", listProducts);
+router.post("/products", createProduct);
 
 export { router };

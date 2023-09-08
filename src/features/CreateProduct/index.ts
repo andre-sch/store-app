@@ -6,4 +6,4 @@ const productsRepository = new ProductsPostgresRepository();
 const createProductService = new CreateProductService(productsRepository);
 const createProductController = new CreateProductController(createProductService);
 
-export { createProductController };
+export const createProduct = createProductController.handle.bind(createProductController);

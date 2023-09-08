@@ -14,6 +14,6 @@ export class CreateProductController {
       quantity
     });
 
-    response.sendStatus(201);
+    response.status(201).send();
   }
 }

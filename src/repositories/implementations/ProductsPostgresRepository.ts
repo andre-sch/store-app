@@ -38,8 +38,6 @@ export class ProductsPostgresRepository implements IProductsRepository {
       values: [productId]
     });
 
-    if (rows.length == 0) {
-      return null;
-    } else return rows[0];
+    return rows.length == 0 ? null : rows[0];
   }
 }
