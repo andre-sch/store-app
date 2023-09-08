@@ -37,6 +37,13 @@ export class ProductsPostgresRepository implements IProductsRepository {
     });
   }
 
+  public async delete(productId: string): Promise<void> {
+    await this.client.query({
+      text: "DELETE FROM Products WHERE id = $1",
+      values: [productId]
+    });
+  }
+
   public async findById(productId: string): Promise<Product | null> {
     const { rows } = await this.client.query<Product>({
       text: "SELECT * FROM Products WHERE id = $1",
