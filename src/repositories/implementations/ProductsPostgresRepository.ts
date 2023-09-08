@@ -28,6 +28,15 @@ export class ProductsPostgresRepository implements IProductsRepository {
     });
   }
 
+  public async update(product: Product): Promise<void> {
+    const { id, name, description, quantity, price } = product;
+
+    await this.client.query({
+      text: "UPDATE Products SET name = $1, description = $2, quantity = $3, price = $4 WHERE id = $5",
+      values: [name, description, quantity, price, id]
+    });
+  }
+
   public async findById(productId: string): Promise<Product | null> {
     const { rows } = await this.client.query<Product>({
       text: "SELECT * FROM Products WHERE id = $1",

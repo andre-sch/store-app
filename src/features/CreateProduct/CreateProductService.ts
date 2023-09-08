@@ -2,7 +2,7 @@ import { Product } from "../../entities/Product";
 import { IProductsRepository } from "../../repositories/IProductsRepository";
 import { OperationalError } from "../../errors/OperationalError";
 
-export interface IProductRequest {
+export interface IProductCreationRequest {
   name: string;
   description: string;
   quantity: number;
@@ -12,7 +12,7 @@ export interface IProductRequest {
 export class CreateProductService {
   constructor(private productsRepository: IProductsRepository) {}
 
-  public async execute(request: IProductRequest): Promise<void> {
+  public async execute(request: IProductCreationRequest): Promise<void> {
     const { name, description, quantity, price } = request;
     const product = new Product(name, description, quantity, price);
 
