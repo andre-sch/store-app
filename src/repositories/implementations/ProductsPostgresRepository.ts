@@ -22,10 +22,6 @@ export class ProductsPostgresRepository implements IProductsRepository {
   public async create(product: Product): Promise<void> {
     const { id, name, description, quantity, price } = product;
 
-    if (await this.findById(id)) {
-      throw new Error("Product ID is already taken!");
-    }
-
     await this.client.query({
       text: "INSERT INTO Products VALUES ($1, $2, $3, $4, $5)",
       values: [id, name, description, quantity, price]

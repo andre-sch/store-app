@@ -14,6 +14,10 @@ export class CreateProductService {
   public async execute(request: IProductRequest): Promise<void> {
     const { name, description, quantity, price } = request;
     const product = new Product(name, description, quantity, price);
+
+    if (await this.productsRepository.findById(product.id))
+      throw new Error("Product ID is already taken!");
+
     await this.productsRepository.create(product);
   }
 }
