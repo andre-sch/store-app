@@ -25,4 +25,20 @@ export class UsersPostgresRepository implements IUsersRepository {
       values: [id, name, surname, email, password]
     });
   }
+
+  public async update({ id, name, surname, email, password }: User): Promise<void> {
+    await this.client.query({
+      text: "UPDATE Users SET name = $1, surname = $2, email = $3, password = $4 WHERE id = $5",
+      values: [name, surname, email, password, id]
+    });
+  }
+
+  public async findById(userId: string): Promise<User | null> {
+    const { rows } = await this.client.query<User>({
+      text: "SELECT * FROM Users WHERE id = $1",
+      values: [userId]
+    });
+
+    return rows.length == 0 ? null : rows[0];
+  }
 }

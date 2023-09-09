@@ -7,6 +7,7 @@ import { deleteProduct } from "./features/DeleteProduct";
 
 import { listUsers } from "./features/ListUsers";
 import { createUser } from "./features/CreateUser";
+import { updateUser } from "./features/UpdateUser";
 
 const router = Router();
 
@@ -17,5 +18,6 @@ router.delete("/products/:id", deleteProduct);
 
 router.get("/users", listUsers);
 router.post("/users", createUser);
+router.put("/users/:id", updateUser);
 
 export { router };
