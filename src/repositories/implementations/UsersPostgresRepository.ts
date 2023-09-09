@@ -13,7 +13,7 @@ export class UsersPostgresRepository implements IUsersRepository {
 
   public async list(): Promise<User[]> {
     const result = await this.client.query<User>({
-      text: "SELECT * FROM Users"
+      text: "SELECT * FROM users"
     });
 
     return result.rows;
@@ -21,28 +21,28 @@ export class UsersPostgresRepository implements IUsersRepository {
 
   public async create({ id, name, surname, email, password }: User): Promise<void> {
     await this.client.query({
-      text: "INSERT INTO Users VALUES ($1, $2, $3, $4, $5)",
+      text: "INSERT INTO users VALUES ($1, $2, $3, $4, $5)",
       values: [id, name, surname, email, password]
     });
   }
 
   public async update({ id, name, surname, email, password }: User): Promise<void> {
     await this.client.query({
-      text: "UPDATE Users SET name = $1, surname = $2, email = $3, password = $4 WHERE id = $5",
+      text: "UPDATE users SET name = $1, surname = $2, email = $3, password = $4 WHERE id = $5",
       values: [name, surname, email, password, id]
     });
   }
 
   public async delete(userId: string): Promise<void> {
     await this.client.query({
-      text: "DELETE FROM Users WHERE id = $1",
+      text: "DELETE FROM users WHERE id = $1",
       values: [userId]
     });
   }
 
   public async findById(userId: string): Promise<User | null> {
     const { rows } = await this.client.query<User>({
-      text: "SELECT * FROM Users WHERE id = $1",
+      text: "SELECT * FROM users WHERE id = $1",
       values: [userId]
     });
 

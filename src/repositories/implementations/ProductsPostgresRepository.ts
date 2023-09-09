@@ -13,7 +13,7 @@ export class ProductsPostgresRepository implements IProductsRepository {
 
   public async list(): Promise<Product[]> {
     const result = await this.client.query<Product>({
-      text: "SELECT * FROM Products"
+      text: "SELECT * FROM products"
     });
 
     return result.rows;
@@ -23,7 +23,7 @@ export class ProductsPostgresRepository implements IProductsRepository {
     const { id, name, description, quantity, price } = product;
 
     await this.client.query({
-      text: "INSERT INTO Products VALUES ($1, $2, $3, $4, $5)",
+      text: "INSERT INTO products VALUES ($1, $2, $3, $4, $5)",
       values: [id, name, description, quantity, price]
     });
   }
@@ -32,21 +32,21 @@ export class ProductsPostgresRepository implements IProductsRepository {
     const { id, name, description, quantity, price } = product;
 
     await this.client.query({
-      text: "UPDATE Products SET name = $1, description = $2, quantity = $3, price = $4 WHERE id = $5",
+      text: "UPDATE products SET name = $1, description = $2, quantity = $3, price = $4 WHERE id = $5",
       values: [name, description, quantity, price, id]
     });
   }
 
   public async delete(productId: string): Promise<void> {
     await this.client.query({
-      text: "DELETE FROM Products WHERE id = $1",
+      text: "DELETE FROM products WHERE id = $1",
       values: [productId]
     });
   }
 
   public async findById(productId: string): Promise<Product | null> {
     const { rows } = await this.client.query<Product>({
-      text: "SELECT * FROM Products WHERE id = $1",
+      text: "SELECT * FROM products WHERE id = $1",
       values: [productId]
     });
 
