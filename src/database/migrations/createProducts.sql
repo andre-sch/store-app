@@ -4,4 +4,4 @@ CREATE TABLE IF NOT EXISTS Products (
   description VARCHAR(300),
   quantity INT NOT NULL,
   price INT NOT NULL
-)
+);
