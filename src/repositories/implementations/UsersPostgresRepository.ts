@@ -33,6 +33,13 @@ export class UsersPostgresRepository implements IUsersRepository {
     });
   }
 
+  public async delete(userId: string): Promise<void> {
+    await this.client.query({
+      text: "DELETE FROM Users WHERE id = $1",
+      values: [userId]
+    });
+  }
+
   public async findById(userId: string): Promise<User | null> {
     const { rows } = await this.client.query<User>({
       text: "SELECT * FROM Users WHERE id = $1",
