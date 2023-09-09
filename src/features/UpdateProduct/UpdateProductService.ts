@@ -1,7 +1,7 @@
 import { IProductsRepository } from "../../repositories/IProductsRepository";
 import { OperationalError } from "../../errors/OperationalError";
 
-interface IUpdateProductRequest {
+interface IProductUpdateRequest {
   id: string;
   name?: string;
   description?: string;
@@ -12,7 +12,7 @@ interface IUpdateProductRequest {
 export class UpdateProductService {
   constructor(private productsRepository: IProductsRepository) {}
 
-  public async execute(request: IUpdateProductRequest): Promise<void> {
+  public async execute(request: IProductUpdateRequest): Promise<void> {
     const record = await this.productsRepository.findById(request.id);
     if (!record) throw new OperationalError("Requested product does not exist!");
 
