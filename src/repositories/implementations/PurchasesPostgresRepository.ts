@@ -11,6 +11,14 @@ export class PurchasesPostgresRepository implements IPurchasesRepository {
     createConnection().then((client) => (this.client = client));
   }
 
+  public async list(): Promise<Purchase[]> {
+    const result = await this.client.query<Purchase>({
+      text: "SELECT * FROM purchases"
+    });
+
+    return result.rows;
+  }
+
   public async create({
     id,
     userId,

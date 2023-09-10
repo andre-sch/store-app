@@ -10,6 +10,7 @@ import { createUser } from "./features/CreateUser";
 import { updateUser } from "./features/UpdateUser";
 import { deleteUser } from "./features/DeleteUser";
 
+import { listPurchases } from "./features/ListPurchases";
 import { createPurchase } from "./features/CreatePurchase";
 
 const router = Router();
@@ -24,6 +25,7 @@ router.post("/users", createUser);
 router.put("/users/:id", updateUser);
 router.delete("/users/:id", deleteUser);
 
+router.get("/purchases", listPurchases);
 router.post("/purchases", createPurchase);
 
 export { router };
