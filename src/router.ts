@@ -10,6 +10,8 @@ import { createUser } from "./features/CreateUser";
 import { updateUser } from "./features/UpdateUser";
 import { deleteUser } from "./features/DeleteUser";
 
+import { createPurchase } from "./features/CreatePurchase";
+
 const router = Router();
 
 router.get("/products", listProducts);
@@ -21,5 +23,7 @@ router.get("/users", listUsers);
 router.post("/users", createUser);
 router.put("/users/:id", updateUser);
 router.delete("/users/:id", deleteUser);
+
+router.post("/purchases", createPurchase);
 
 export { router };
