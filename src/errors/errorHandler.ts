@@ -6,7 +6,7 @@ export function errorHandler(
   request: Request,
   response: Response,
   next: NextFunction
-) {
+): void {
   if (error instanceof OperationalError)
     response.status(400).json({ message: error.message });
   else response.status(500).json({ message: "Internal Server Error" });
