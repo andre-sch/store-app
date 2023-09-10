@@ -13,7 +13,7 @@ export class DeleteUserController {
 
     try {
       await this.deleteUserService.execute(userId);
-      response.send();
+      response.status(204).end();
     } catch (error) {
       next(error);
     }

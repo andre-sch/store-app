@@ -13,7 +13,7 @@ export class DeleteProductController {
 
     try {
       await this.deleteProductService.execute(productId);
-      response.send();
+      response.status(204).end();
     } catch (error) {
       next(error);
     }
