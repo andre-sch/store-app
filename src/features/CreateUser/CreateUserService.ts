@@ -13,7 +13,7 @@ interface IUserCreationRequest {
 export class CreateUserService {
   constructor(private usersRepository: IUsersRepository) {}
 
-  public async execute(request: IUserCreationRequest): Promise<void> {
+  public async execute(request: IUserCreationRequest): Promise<User> {
     const { name, surname, email, password } = request;
 
     const saltRounds = 10;
@@ -22,5 +22,7 @@ export class CreateUserService {
     const user = new User(name, surname, email, hash);
 
     await this.usersRepository.create(user);
+
+    return user;
   }
 }

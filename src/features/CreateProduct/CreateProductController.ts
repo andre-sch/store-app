@@ -12,14 +12,14 @@ export class CreateProductController {
     const { name, description, price, quantity } = request.body;
 
     try {
-      await this.createProductService.execute({
+      const product = await this.createProductService.execute({
         name,
         description,
         price,
         quantity
       });
 
-      response.status(201).send();
+      response.status(201).json(product);
     } catch (error) {
       next(error);
     }

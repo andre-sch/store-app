@@ -1,5 +1,6 @@
 import bcrypt from "bcrypt";
 
+import { User } from "../../entities/User";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 import { OperationalError } from "../../errors/OperationalError";
 
@@ -14,7 +15,7 @@ interface IUserUpdateRequest {
 export class UpdateUserService {
   constructor(private usersRepository: IUsersRepository) {}
 
-  public async execute(request: IUserUpdateRequest): Promise<void> {
+  public async execute(request: IUserUpdateRequest): Promise<User> {
     const record = await this.usersRepository.findById(request.id);
     if (!record) throw new OperationalError("Requested user does not exist!");
 
@@ -23,12 +24,16 @@ export class UpdateUserService {
       ? await bcrypt.hash(request.password, saltRounds)
       : undefined;
 
-    await this.usersRepository.update({
+    const updatedUser = {
       id: request.id,
       name: request.name || record.name,
       surname: request.surname || record.surname,
       email: request.email || record.email,
       password: hash || record.password
-    });
+    };
+
+    await this.usersRepository.update(updatedUser);
+
+    return updatedUser;
   }
 }

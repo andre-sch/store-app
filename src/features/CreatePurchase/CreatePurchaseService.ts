@@ -20,7 +20,7 @@ export class CreatePurchaseService {
     private purchasesRepository: IPurchasesRepository
   ) {}
 
-  public async execute(request: IPurchaseRequest): Promise<void> {
+  public async execute(request: IPurchaseRequest): Promise<Purchase> {
     const { userId, productId, shippingAddress, payment } = request;
 
     const user = await this.usersRepository.findById(userId);
@@ -44,5 +44,7 @@ export class CreatePurchaseService {
 
     await this.purchasesRepository.create(purchase);
     await this.productsRepository.update({ ...product, quantity: remainingQuantity });
+
+    return purchase;
   }
 }

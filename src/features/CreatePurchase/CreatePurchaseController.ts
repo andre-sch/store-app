@@ -12,7 +12,7 @@ export class CreatePurchaseController {
     const { userId, productId, shippingAddress, payment, quantity } = request.body;
 
     try {
-      await this.createPurchaseService.execute({
+      const purchase = await this.createPurchaseService.execute({
         userId,
         productId,
         shippingAddress,
@@ -20,7 +20,7 @@ export class CreatePurchaseController {
         quantity
       });
 
-      response.status(201).send();
+      response.status(201).json(purchase);
     } catch (error) {
       next(error);
     }

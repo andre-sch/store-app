@@ -13,8 +13,15 @@ export class UpdateUserController {
     const { name, surname, email, password } = request.body;
 
     try {
-      await this.updateUserService.execute({ id, name, surname, email, password });
-      response.send();
+      const updatedUser = await this.updateUserService.execute({
+        id,
+        name,
+        surname,
+        email,
+        password
+      });
+
+      response.json(updatedUser);
     } catch (error) {
       next(error);
     }

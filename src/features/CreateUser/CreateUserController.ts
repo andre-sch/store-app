@@ -12,8 +12,14 @@ export class CreateUserController {
     const { name, surname, email, password } = request.body;
 
     try {
-      await this.createUserService.execute({ name, surname, email, password });
-      response.status(201).send();
+      const user = await this.createUserService.execute({
+        name,
+        surname,
+        email,
+        password
+      });
+
+      response.status(201).json(user);
     } catch (error) {
       next(error);
     }

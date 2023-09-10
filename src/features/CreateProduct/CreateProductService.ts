@@ -11,11 +11,13 @@ export interface IProductCreationRequest {
 export class CreateProductService {
   constructor(private productsRepository: IProductsRepository) {}
 
-  public async execute(request: IProductCreationRequest): Promise<void> {
+  public async execute(request: IProductCreationRequest): Promise<Product> {
     const { name, description, quantity, price } = request;
 
     const product = new Product(name, description, quantity, price);
 
     await this.productsRepository.create(product);
+
+    return product;
   }
 }

@@ -13,7 +13,7 @@ export class UpdateProductController {
     const { name, description, quantity, price } = request.body;
 
     try {
-      await this.updateProductService.execute({
+      const updatedProduct = await this.updateProductService.execute({
         id,
         name,
         description,
@@ -21,7 +21,7 @@ export class UpdateProductController {
         price
       });
 
-      response.send();
+      response.json(updatedProduct);
     } catch (error) {
       next(error);
     }
