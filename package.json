@@ -1,6 +1,6 @@
 {
   "name": "store_app",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "author": "andre.sch",
   "license": "MIT",
   "main": "index.js",
