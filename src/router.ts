@@ -11,6 +11,7 @@ import { updateUser } from "./features/UpdateUser";
 import { deleteUser } from "./features/DeleteUser";
 
 import { listPurchases } from "./features/ListPurchases";
+import { listUserPurchases } from "./features/ListUserPurchases";
 import { createPurchase } from "./features/CreatePurchase";
 
 const router = Router();
@@ -24,6 +25,8 @@ router.get("/users", listUsers);
 router.post("/users", createUser);
 router.put("/users/:id", updateUser);
 router.delete("/users/:id", deleteUser);
+
+router.get("/users/:id/purchases", listUserPurchases);
 
 router.get("/purchases", listPurchases);
 router.post("/purchases", createPurchase);
