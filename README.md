@@ -7,13 +7,10 @@ Purchases. The goal of this project is to learn more about CRUDs and RDBMS.
 
 ## :pushpin: Features
 
-- [x] User management
-- [x] Product management
-- [x] Product purchase
-- [x] Purchase history
-- [ ] Validation
-- [ ] Authentication
-- [ ] Access control
+- User management
+- Product management
+- Product purchase
+- Purchase history
 
 ## :toolbox: Setup
 
