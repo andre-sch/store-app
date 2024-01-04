@@ -2,8 +2,8 @@
 
 > Built with NodeJS, Typescript and Postgres
 
-Simple Rest API that manages the relationship between Users, Products and  
-Purchases. The goal of this project is to learn more about CRUDs and RDBMS.
+Simple Rest API that manages the relationship between Users, Products and Purchases.   
+The goal of this project is to learn more about CRUDs and RDBMS.
 
 ## :pushpin: Features
 
